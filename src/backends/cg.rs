@@ -2,7 +2,7 @@ use crate::backend_interface::*;
 use crate::error::InitError;
 use crate::{Rect, SoftBufferError};
 use core_graphics::base::{
-    kCGBitmapByteOrder32Little, kCGImageAlphaNoneSkipFirst, kCGRenderingIntentDefault,
+    kCGBitmapByteOrder32Little, kCGImageAlphaFirst, kCGRenderingIntentDefault,
 };
 use core_graphics::color_space::CGColorSpace;
 use core_graphics::data_provider::CGDataProvider;
@@ -145,7 +145,7 @@ impl<'a, D: HasDisplayHandle, W: HasWindowHandle> BufferInterface for BufferImpl
             32,
             (width.get() * 4) as usize,
             &self.imp.color_space.0,
-            kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipFirst,
+            kCGBitmapByteOrder32Little | kCGImageAlphaFirst,
             &data_provider,
             false,
             kCGRenderingIntentDefault,
